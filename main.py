@@ -2,7 +2,7 @@ import requests
 
 
 def check_for_none(param):
-    """Функция, заменяющая None на 0. Нужно для избежания ошибок"""
+    """Функция, заменяющая None на 0. Нужно для предотвращения ошибок"""
     if param is None:
         return 0
     return param
