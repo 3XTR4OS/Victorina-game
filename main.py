@@ -31,11 +31,12 @@ URL = 'https://api.hh.ru/vacancies'
 
 
 # Максимально доступное количество вакансий за один запрос = 100
-def find_vacancy(pages=100, remote=True):
+def find_vacancy(pages=100):
     searching_text = input('Введите ключевые слова искомой вакансии: ')
+    remote = input('Только удалённые вакансии? Введите ДА или НЕТ: ')
     par = {'text': searching_text, 'per_page': pages}
 
-    if remote:
+    if remote.lower() == 'да':
         par['schedule'] = 'remote'
 
     request = requests.get(URL, params=par).json()
