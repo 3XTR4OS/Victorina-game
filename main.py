@@ -2,7 +2,7 @@ import requests
 
 
 def check_for_none(param):
-    """Функция, заменяющая None на 0. Нужно для предотвращения ошибок"""
+    """Функция, заменяющая None на 0. Нужно для избежания ошибок"""
     if param is None:
         return 0
     return param
@@ -33,11 +33,16 @@ URL = 'https://api.hh.ru/vacancies'
 # Максимально доступное количество вакансий за один запрос = 100
 def find_vacancy(pages=100):
     searching_text = input('Введите ключевые слова искомой вакансии: ')
-    remote = input('Только удалённые вакансии? Введите ДА или НЕТ: ')
+    remote = input('Только удалённые вакансии? ДА/НЕТ: ')
+    with_salary = input('Только с указанной зп? ДА/НЕТ: ')
+
     par = {'text': searching_text, 'per_page': pages}
 
     if remote.lower() == 'да':
         par['schedule'] = 'remote'
+
+    if with_salary.lower() == 'да':
+        par['only_with_salary'] = True
 
     request = requests.get(URL, params=par).json()
     for item in request['items']:
