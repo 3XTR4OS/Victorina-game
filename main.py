@@ -8,7 +8,7 @@ def check_for_none(param):
     return param
 
 
-def get_vacancy_parameters(row):  # v means vacancy
+def get_vacancy_parameters(row): 
     name = check_for_none(row['name'])
     url = check_for_none(row['alternate_url'])
 
